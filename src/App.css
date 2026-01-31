@@ -780,13 +780,34 @@ div#txt {
   }
   
   .search-box {
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1000; /* ← CHANGE THIS from 999 to 1000 */
+  gap: 15px;
+  flex-wrap: wrap;
   }
   
   .search-box .search-bar {
-    width: 100%;
-    max-width: 280px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 16px 28px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 16px;
+  width: 350px;
+  max-width: 100%;
+  outline: none;
+  cursor: text;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  position: relative; /* ← ADD THIS LINE */
+  z-index: 1001; /* ← ADD THIS LINE */
   }
   
   .today-weather ul li {
@@ -945,8 +966,18 @@ div#txt {
   }
   
   .mb-icon {
-    top: 25% !important;
-    display: flex !important;
+  height: 100%;
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1; /* ← CHANGE THIS to 1 (it was probably higher) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: iconFloat 4s ease-in-out infinite;
+  pointer-events: none;
   }
 }
 
@@ -954,6 +985,7 @@ div#txt {
   .city {
     min-height: 300px;
     padding: 14px 8px 22px;
+    z-index: auto;
   }
   
   .title h2 {
@@ -1035,7 +1067,7 @@ div#txt {
   justify-content: center;
   margin-bottom: 40px;
   position: relative;
-  z-index: 2;
+  z-index: 999;
   gap: 15px;
   flex-wrap: wrap;
 }
@@ -1053,6 +1085,8 @@ div#txt {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
   border: 2px solid rgba(100, 200, 255, 0.4);
+  position: relative; 
+  z-index: 1001; 
 }
 .search-box img {
   width: 60%;
@@ -1069,16 +1103,19 @@ div#txt {
 .search-box .search-bar {
   border: 2px solid rgba(255, 255, 255, 0.3);
   padding: 16px 28px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(20, 20, 40, 0.4));
-  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
   border-radius: 50px;
   font-size: 16px;
   width: 350px;
   max-width: 100%;
-  backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  outline: none;
+  cursor: text;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 .search-box .search-bar::placeholder {
   color: rgba(255, 255, 255, 0.6);
@@ -1105,6 +1142,7 @@ div#txt {
   align-items: center;
   justify-content: center;
   animation: iconFloat 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes iconFloat {
@@ -1199,4 +1237,14 @@ body::after {
   right: 20px;
   top: 1.5%;
   margin: 0px;
+}
+/* Force search bar to work - TEMPORARY FIX */
+.search-box * {
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+.mb-icon {
+  z-index: 1 !important;
 }

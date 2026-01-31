@@ -42,15 +42,30 @@ function Forcast(props) {
             type="text"
             className="search-bar"
             placeholder="Search any city"
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              console.log('Input change:', e.target.value);
+              setQuery(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && query.trim()) {
+                search(query);
+              }
+            }}
             value={query}
+            autoFocus
+            ref={input => {
+              if (input) {
+                input.style.color = '#ffffff';
+                input.style.caretColor = '#ffffff';
+              }
+            }}
           />
           <div className="img-box">
             {" "}
             <img
               src="https://images.avishkaar.cc/workflow/newhp/search-white.png"
               alt="Search city"
-              onClick={search}
+              onClick={() => query.trim() && search(query)}
             />
           </div>
         </div>
