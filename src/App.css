@@ -1116,7 +1116,13 @@ div#txt {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
+  position: relative !important;
+  z-index: 10000 !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
+
 .search-box .search-bar::placeholder {
   color: rgba(255, 255, 255, 0.6);
   font-style: italic;
@@ -1143,6 +1149,8 @@ div#txt {
   justify-content: center;
   animation: iconFloat 4s ease-in-out infinite;
   pointer-events: none;
+  z-index: 1 !important;
+  pointer-events: none !important;
 }
 
 @keyframes iconFloat {
