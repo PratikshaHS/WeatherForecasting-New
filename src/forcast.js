@@ -60,6 +60,19 @@ function Forcast(props) {
               }
             }}
           />
+          {query && (
+            <div style={{
+              color: '#ffffff',
+              marginTop: '10px',
+              fontSize: '14px',
+              background: 'rgba(0, 0, 0, 0.6)',
+              padding: '8px 12px',
+              borderRadius: '20px',
+              textAlign: 'center'
+            }}>
+              Typing: {query}
+            </div>
+          )}
           <div className="img-box">
             {" "}
             <img
